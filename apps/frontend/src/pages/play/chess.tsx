@@ -11,8 +11,11 @@ import GameOptionsBar from "../../chess/gameOptions/GameOptionsBar";
 import ChessModals from "../../chess/modal/ChessModals";
 import { socket } from "../../connection/socket";
 import gameService from "../../services/game";
+import { useRouter } from "next/router";
 
 const ChessGame = () => {
+  const router = useRouter();
+
   const [game, setGame] = useState({
     board: null,
     moveHistory: [],
@@ -67,14 +70,17 @@ const ChessGame = () => {
   // Upon loading, if a current game is stored, get game from db
   useEffect(() => {
     const isCurrentGame = localStorage.getItem("CURRENT_GAME_DATA");
-    if (isCurrentGame) {
+
+    if (router.query.gameId) {
+      joinGame(router.query.gameId.toString());
+    } else if (isCurrentGame) {
       const currentGameData = JSON.parse(
         localStorage.getItem("CURRENT_GAME_DATA")
       );
       setGameData(currentGameData);
       socket.emit("joinGame", currentGameData.id);
     }
-  }, []);
+  }, [router.query.gameId]);
 
   // if the local gameID state is changed, retrieves new game from database
   useEffect(() => {
