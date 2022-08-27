@@ -6,7 +6,7 @@ export default function GameOverModal({
   status,
   toggleCreateGame,
   closeModal,
-}) {
+}: any) {
   const result = status.result.charAt(0).toUpperCase() + status.result.slice(1);
 
   return (

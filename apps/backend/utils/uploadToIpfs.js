@@ -1,10 +1,9 @@
 const { Web3Storage, File } = require("web3.storage");
 
+// eslint-disable-next-line turbo/no-undeclared-env-vars
 const token = process.env.WEB3_STORAGE_TOKEN;
 
 const client = new Web3Storage({ token });
-
-const axios = require("axios");
 
 const uploadToIpfs = async (data) => {
   try {

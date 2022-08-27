@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 const ChessGame = () => {
   const router = useRouter();
 
-  const [game, setGame] = useState({
+  const [game, setGame] = useState<any>({
     board: null,
     moveHistory: [],
     notation: [],
@@ -25,17 +25,15 @@ const ChessGame = () => {
     status: { result: "undecided", score: "undecided" },
   });
   const chess = new Chess();
-  const [openModal, setOpenModal] = useState<EChessOptionModal>(
-    EChessOptionModal.NULL
-  );
+  const [openModal, setOpenModal] = useState<any>(EChessOptionModal.NULL);
 
-  const [gameData, setGameData] = useState<IChessGameData>({
+  const [gameData, setGameData] = useState<any>({
     id: null,
     color: null,
   });
 
   // Takes in a game state to update React state
-  const updateLocalGameState = async (updatedGame: IChessGameData) => {
+  const updateLocalGameState = async (updatedGame: any) => {
     const updatedBoard = chess.createBoardFromMoveHistory(
       updatedGame.moveHistory
     );
@@ -74,8 +72,8 @@ const ChessGame = () => {
     if (router.query.gameId) {
       joinGame(router.query.gameId.toString());
     } else if (isCurrentGame) {
-      const currentGameData = JSON.parse(
-        localStorage.getItem("CURRENT_GAME_DATA")
+      const currentGameData: any = JSON.parse(
+        localStorage.getItem("CURRENT_GAME_DATA") as string
       );
       setGameData(currentGameData);
       socket.emit("joinGame", currentGameData.id);
@@ -99,7 +97,8 @@ const ChessGame = () => {
 
   useEffect(() => {
     socket.on("opponentResigned", () => {
-      const resigningColor = gameData.color === "white" ? "black" : "white";
+      const resigningColor: string =
+        gameData.color === "white" ? "black" : "white";
       handleResignation(resigningColor);
     });
     return () => {
@@ -132,7 +131,7 @@ const ChessGame = () => {
     };
   });
 
-  const move = async (moveToPlay) => {
+  const move = async (moveToPlay: any) => {
     updateGameOptimistically(moveToPlay);
     await gameService.playMove(gameData.id, moveToPlay);
     const updatedGame = await gameService.getGame(gameData.id);
@@ -146,7 +145,7 @@ const ChessGame = () => {
   };
 
   // Updates react state using chess logic without waiting for server response
-  const updateGameOptimistically = (move) => {
+  const updateGameOptimistically = (move: any) => {
     const isPlayableMove = chess.isPlayableMove(game.board, move);
     if (!isPlayableMove) return;
     const fullMove = chess.getFullMove(game.board, move);
@@ -188,20 +187,20 @@ const ChessGame = () => {
     handleResignation(gameData.color);
   };
 
-  const handleResignation = (resigningColor: IChessPieceColor) => {
+  const handleResignation = (resigningColor: string) => {
     const result = `${resigningColor} resigned`;
     const score = resigningColor === "white" ? "0-1" : "1-0";
     setGame({ ...game, status: { result, score } });
     setOpenModal(EChessOptionModal.GAME_OVER);
   };
 
-  const findPossibleMoves = (square) => {
+  const findPossibleMoves = (square: string) => {
     return chess.findSquaresForPiece(game.board, square, "possibleMoves");
   };
 
-  const highlightMovesForPiece = (possibleMoves) => {
+  const highlightMovesForPiece = (possibleMoves: any) => {
     const highlightedBoard = chess.markPossibleMoves(game.board, possibleMoves);
-    setGame((game) => ({ ...game, board: highlightedBoard }));
+    setGame((game: any) => ({ ...game, board: highlightedBoard }));
   };
 
   const gameInProgress = game.board !== null;

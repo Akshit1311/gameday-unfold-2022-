@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../../components/Button/Button";
 import Modal from "./Modal";
 
-export default function JoinGameModal({ joinGame, closeModal }) {
+export default function JoinGameModal({ joinGame, closeModal }: any) {
   const [gameID, setGameID] = useState("");
 
   const handleSubmit = () => {

@@ -27,7 +27,7 @@ const getBoard: TGetBoard = (board, playerColor: IChessPieceColor) => {
   }
 };
 
-const isMovePromotion = (piece: IChessPiece, targetSquare) => {
+const isMovePromotion = (piece: IChessPiece, targetSquare: any) => {
   if (piece.type !== "pawn") {
     return false;
   }

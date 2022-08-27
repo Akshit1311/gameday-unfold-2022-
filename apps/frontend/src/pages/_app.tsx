@@ -10,7 +10,7 @@ import { publicProvider } from "wagmi/providers/public";
 import WithNavbar from "../layouts/WithNavbar";
 
 // eslint-disable-next-line turbo/no-undeclared-env-vars
-const ALCHEMY_API_KEY = process.env.ALCHEMY_API_KEY;
+const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 
 const { chains, provider } = configureChains(
   [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],

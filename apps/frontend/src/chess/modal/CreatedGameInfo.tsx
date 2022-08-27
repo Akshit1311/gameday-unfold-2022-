@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../components/Button/Button";
 import Modal from "./Modal";
 
-export default function CreatedGameInfo({ gameID, closeModal }) {
+export default function CreatedGameInfo({ gameID, closeModal }: any) {
   return (
     <Modal>
       {gameID && (

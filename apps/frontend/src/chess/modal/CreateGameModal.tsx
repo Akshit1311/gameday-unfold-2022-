@@ -3,7 +3,7 @@ import Button from "../../components/Button/Button";
 import { IChessPieceColor } from "../chessTypes";
 import Modal from "./Modal";
 
-export default function CreateGameModal({ createGame, closeModal }) {
+export default function CreateGameModal({ createGame, closeModal }: any) {
   const [colorChoice, setColorChoice] = useState<IChessPieceColor>(
     IChessPieceColor.WHITE
   );

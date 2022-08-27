@@ -17,16 +17,16 @@ export default function Board({
   findPossibleMoves,
   highlightMovesForPiece,
   playerColor,
-}) {
+}: any) {
   const { board, playerToMove, status } = game;
 
-  const [pieceToMove, setPieceToMove] = useState(null);
-  const [promotionMove, setPromotionMove] = useState(null);
+  const [pieceToMove, setPieceToMove] = useState<any>(null);
+  const [promotionMove, setPromotionMove] = useState<any>(null);
 
   const lastMove = game.moveHistory[game.moveHistory.length - 1];
   const lastPlayedMoveSquares = lastMove ? [lastMove.from, lastMove.to] : [];
 
-  const movePiece = (targetSquare) => {
+  const movePiece = (targetSquare: any) => {
     highlightMovesForPiece([]);
     const moveToPlay = {
       piece: pieceToMove.piece,
@@ -44,7 +44,7 @@ export default function Board({
     setPieceToMove(null);
   };
 
-  const selectPiece = (coordinates, piece) => {
+  const selectPiece = (coordinates: any, piece: any) => {
     const wrongColor =
       playerColor !== playerToMove || piece.color !== playerColor;
     if (wrongColor || status.result !== "undecided") return;
@@ -58,13 +58,13 @@ export default function Board({
     highlightMovesForPiece(selectedPiece.possibleMoves);
   };
 
-  const handleClick = ({ coordinates, piece }) => {
+  const handleClick = ({ coordinates, piece }: any) => {
     const squareHasPiece = piece;
     if (!pieceToMove && squareHasPiece) selectPiece(coordinates, piece);
     if (pieceToMove) movePiece(coordinates);
   };
 
-  const promote = (promotionChoice) => {
+  const promote = (promotionChoice: any) => {
     if (!promotionMove) return;
 
     const moveToPlay = {
@@ -74,7 +74,7 @@ export default function Board({
       promotion: promotionChoice,
     };
     move(moveToPlay);
-    setPromotionMove(false);
+    setPromotionMove(null);
     setPieceToMove(null);
   };
 

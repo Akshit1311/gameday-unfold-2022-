@@ -1,6 +1,11 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
 import axios from "axios";
 //const baseUrl = '/api/games'
-const baseUrl = "http://localhost:3001/api/games";
+const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT;
+
+const baseUrl = `${BACKEND_ENDPOINT}/api/games`;
+
+console.log({ BACKEND_ENDPOINT, baseUrl });
 
 interface EpnsBody {
   recipient: string;
@@ -9,7 +14,7 @@ interface EpnsBody {
 
 const sendEpnsNotif = async (body: EpnsBody) => {
   const response = await axios.post(
-    "http://localhost:3001/epns/send-notif",
+    `${BACKEND_ENDPOINT}/epns/send-notif`,
     body
   );
   console.log({ response });
@@ -30,7 +35,7 @@ const getGame = async (id: string | null) => {
   }
 };
 
-const playMove = async (id: string, move) => {
+const playMove = async (id: string, move: any) => {
   try {
     const response = await axios.post(`${baseUrl}/${id}/moves`, move);
     return response.data;
@@ -39,7 +44,7 @@ const playMove = async (id: string, move) => {
   }
 };
 
-const setGameResult = async (id: string | null, result) => {
+const setGameResult = async (id: string | null, result: any) => {
   const response = await axios.patch(`${baseUrl}/${id}/result`, result);
   console.log("result", result, "response", response);
   return response.data;

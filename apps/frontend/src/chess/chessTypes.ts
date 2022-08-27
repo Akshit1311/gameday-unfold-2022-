@@ -79,3 +79,9 @@ export interface IChessGameData {
   id: null | string;
   color: null | IChessPieceColor;
 }
+
+export interface IPromotionChoice {
+  piece: IChessPiece;
+  from: TChessCoords;
+  to: TChessCoords;
+}
