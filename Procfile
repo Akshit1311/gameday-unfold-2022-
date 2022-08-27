@@ -1,1 +1,1 @@
-web: cd apps/backend && node index.js
+web: yarn workspace backend run start
