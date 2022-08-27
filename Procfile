@@ -1,0 +1,1 @@
+web: cd apps/backend && node index.js
