@@ -141,6 +141,21 @@ app.post("/ipfs/download", async (req, res) => {
   }
 });
 
+app.post("/epns/send-notif", async (req, res) => {
+  const { body } = req;
+
+  try {
+    const result = await sendEpnsNotif(body);
+
+    console.log({ result });
+
+    return res.status(200).send({ msg: "Success", data: result });
+  } catch (error) {
+    console.log({ error });
+    return res.status(500).send({ msg: "Internal Server Error", error });
+  }
+});
+
 const errorHandler = (error, request, response, next) => {
   console.error(error.message);
 
@@ -210,4 +225,4 @@ io.on("connection", (socket) => {
   });
 });
 
-sendEpnsNotif();
+// sendEpnsNotif();

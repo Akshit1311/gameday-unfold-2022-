@@ -2,6 +2,20 @@ import axios from "axios";
 //const baseUrl = '/api/games'
 const baseUrl = "http://localhost:3001/api/games";
 
+interface EpnsBody {
+  recipient: string;
+  link: string;
+}
+
+const sendEpnsNotif = async (body: EpnsBody) => {
+  const response = await axios.post(
+    "http://localhost:3001/epns/send-notif",
+    body
+  );
+  console.log({ response });
+
+  return response.data;
+};
 const createGame = async () => {
   const response = await axios.post(`${baseUrl}`);
   return response.data;
@@ -31,6 +45,12 @@ const setGameResult = async (id: string | null, result) => {
   return response.data;
 };
 
-const gameService = { getGame, playMove, createGame, setGameResult };
+const gameService = {
+  sendEpnsNotif,
+  getGame,
+  playMove,
+  createGame,
+  setGameResult,
+};
 
 export default gameService;

@@ -1,3 +1,4 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
 const mongoose = require("mongoose");
 
 const url = process.env.MONGODB_URI;

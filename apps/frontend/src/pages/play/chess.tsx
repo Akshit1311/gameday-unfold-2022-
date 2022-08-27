@@ -227,7 +227,7 @@ const ChessGame = () => {
       {!gameInProgress && <Emptyboard chess={chess} />}
 
       <div className="h-full py-8">
-        <GameOptionsBar toggleOption={toggleOption} />
+        <GameOptionsBar toggleOption={toggleOption} gameData={gameData} />
         <ChessModals
           openModal={openModal}
           modalFunctions={modalFunctions}

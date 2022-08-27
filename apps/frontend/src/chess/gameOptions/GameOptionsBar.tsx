@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import gameService from "../../services/game";
 import { EChessOptionModal } from "../chessTypes";
 
 interface IGameOptionsBar {
   toggleOption: (option: EChessOptionModal) => void;
+  gameData: any;
 }
 
 const options = [
@@ -24,17 +26,68 @@ const options = [
   },
 ];
 
-const GameOptionsBar: React.FC<IGameOptionsBar> = ({ toggleOption }) => {
+const GameOptionsBar: React.FC<IGameOptionsBar> = ({
+  toggleOption,
+  gameData,
+}) => {
+  const [recipient, setRecipient] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSendNotif = async () => {
+    if (isLoading) return;
+
+    try {
+      setIsLoading(true);
+
+      if (recipient) {
+        const gameServiceEpnsResult = await gameService.sendEpnsNotif({
+          recipient,
+          link: `http://localhost:3000/play/chess?gameId=${gameData.id}`,
+        });
+
+        console.log({ gameServiceEpnsResult });
+        alert("Game invite sent successfully");
+        setRecipient("");
+      } else alert("Invalid recipient");
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="flex gap-2">
-      {options.map(({ label, name }) => (
-        <button
-          className="px-4  rounded-lg py-2 bg-blue-500 text-white"
-          onClick={() => toggleOption(name)}
-        >
-          {label}
-        </button>
-      ))}
+    <div>
+      <div className="flex gap-2">
+        {options.map(({ label, name }) => (
+          <button
+            className="px-4  rounded-lg py-2 bg-blue-500 text-white"
+            onClick={() => toggleOption(name)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {isLoading ? (
+        "Loading"
+      ) : (
+        <div className="my-8">
+          <div className="text-xl mb-2">Invite Player : </div>
+          <input
+            className="px-3 py-2 border-2 rounded-lg"
+            placeholder="Wallet Address of player2"
+            type="text"
+            onChange={(e) => setRecipient(e.target.value)}
+          />
+          <button
+            className="mx-4 px-4 rounded-lg py-2 bg-blue-500 text-white hover:opacity-75"
+            onClick={handleSendNotif}
+          >
+            Submit
+          </button>
+        </div>
+      )}
     </div>
   );
 };
