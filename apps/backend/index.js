@@ -11,6 +11,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { uploadToIpfs } = require("./utils/uploadToIpfs");
 const axios = require("axios");
+const sendEpnsNotif = require("./epns");
 
 app.use(express.static("build"));
 app.use(express.json());
@@ -208,3 +209,5 @@ io.on("connection", (socket) => {
     socket.to(room).emit("opponentResigned");
   });
 });
+
+sendEpnsNotif();
