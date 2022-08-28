@@ -36,13 +36,17 @@ const GameOptionsBar: React.FC<IGameOptionsBar> = ({
   const handleSendNotif = async () => {
     if (isLoading) return;
 
+    const NEXT_PUBLIC_FRONTEND_ENDPOINT =
+      // eslint-disable-next-line turbo/no-undeclared-env-vars
+      process.env.NEXT_PUBLIC_FRONTEND_ENDPOINT;
+
     try {
       setIsLoading(true);
 
       if (recipient) {
         const gameServiceEpnsResult = await gameService.sendEpnsNotif({
           recipient,
-          link: `http://localhost:3000/play/chess?gameId=${gameData.id}`,
+          link: `${NEXT_PUBLIC_FRONTEND_ENDPOINT}/play/chess?gameId=${gameData.id}`,
         });
 
         console.log({ gameServiceEpnsResult });

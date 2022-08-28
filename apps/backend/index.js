@@ -26,6 +26,10 @@ app.use(
   )
 );
 
+app.get("/", (req, res) => {
+  res.send("Welcome to gameday");
+});
+
 app.post("/api/games", async (request, response, next) => {
   const game = new Game({
     moveHistory: [],
@@ -174,6 +178,7 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
+// eslint-disable-next-line turbo/no-undeclared-env-vars
 const PORT = process.env.PORT || 3001;
 server.listen(PORT);
 console.log(`Server running on port ${PORT}`);
