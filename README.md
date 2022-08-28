@@ -1,77 +1,23 @@
-# Turborepo starter
+# Game Day
 
-This is an official Yarn v1 starter turborepo.
+## Contributers
 
-## What's inside?
+1. [Anjana Haridas](https://github.com/anjanaaaaaaaa)
+2. [Akshit Gupta](https://github.com/Akshit1311)
 
-This turborepo uses [Yarn](https://classic.yarnpkg.com/lang/en/) as a package manager. It includes the following packages/apps:
+## Demo
 
-### Apps and Packages
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/A361jXefnZA/0.jpg)](https://youtu.be/A361jXefnZA)
 
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+## Description
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+Games are already a massive craze among web3 users. The word betting often comes with a tag of luck. Why not get a chance to win prize by running your mind on a 10K RPM. The community we serve is already competitive when it comes to games such as chess. Our idea was to extend the thrill of these users by making them stake an amount before the game and play to win double the amount with the help of intellectual games. The real catch is: Players mutually decide the amount they are willing to stake.
 
-### Utilities
+## Tracks we aimed at :
 
-This turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-## Setup
-
-This repository is used in the `npx create-turbo` command, and selected when choosing which package manager you wish to use with your monorepo (Yarn).
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-yarn run build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-yarn run dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
-- [Caching](https://turborepo.org/docs/core-concepts/caching)
-- [Remote Caching](https://turborepo.org/docs/core-concepts/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+1. EPNS - Added push notifications to invite users to the chess game - [https://github.com/Akshit1311/gameday-unfold-2022-/blob/master/apps/backend/epns/index.js](https://github.com/Akshit1311/gameday-unfold-2022-/blob/master/apps/backend/epns/index.js) (Push notification image attached below)
+2. Gitopia - pushed the code to gitopia repo by setting it up - [https://gitopia.com/gitopia1hfdzjsg32a57d47kvjm6xc3w03hrxyena95zhf/GameDay](https://gitopia.com/gitopia1hfdzjsg32a57d47kvjm6xc3w03hrxyena95zhf/GameDay)
+3. Filecoin/IPFS - Deployed frontend to filecoin, Used web3.storage to save game data to filecoin - [https://github.com/Akshit1311/gameday-unfold-2022-/blob/master/apps/backend/utils/uploadToIpfs.js](https://github.com/Akshit1311/gameday-unfold-2022-/blob/master/apps/backend/utils/uploadToIpfs.js)
+4. Spheron - Deployed NextJS frontend to spheron network on Filecoin - [https://gameday-unfold-2022--1ychzr.spheron.app/](https://gameday-unfold-2022--1ychzr.spheron.app/)
+5. Alchemy - used alchemy as rpc endpoint for polygon network - [https://github.com/Akshit1311/gameday-unfold-2022-/blob/master/apps/frontend/src/pages/\_app.tsx](https://github.com/Akshit1311/gameday-unfold-2022-/blob/master/apps/frontend/src/pages/_app.tsx)
+6. Polygon - Wrote smart contract on polygon using hardhat - [https://github.com/Akshit1311/gameday-unfold-2022-/tree/master/packages/eth](https://github.com/Akshit1311/gameday-unfold-2022-/tree/master/packages/eth)

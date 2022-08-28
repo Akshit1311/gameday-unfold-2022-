@@ -13,7 +13,7 @@ import WithNavbar from "../layouts/WithNavbar";
 const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 
 const { chains, provider } = configureChains(
-  [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum],
+  [chain.polygon],
   [alchemyProvider({ apiKey: ALCHEMY_API_KEY }), publicProvider()]
 );
 const { connectors } = getDefaultWallets({
